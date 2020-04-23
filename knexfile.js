@@ -3,7 +3,7 @@ require("dotenv").config();
 module.exports = {
   test: {
     client: "postgres",
-    connection: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5432/${process.env.POSTGRES_DB}`,
+    connection: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5432/${process.env.POSTGRES_DB}_test`,
     migrations: {
       directory: "./src/db/migrations",
     },
