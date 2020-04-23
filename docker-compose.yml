@@ -2,7 +2,6 @@ version: '3.1'
 services:
   db:
     image: postgres:9.6
-    restart: always
     volumes:
       - ./pg-init-scripts:/docker-entrypoint-initdb.d
     environment:
@@ -15,6 +14,5 @@ services:
     depends_on:
       - db
     image: adminer
-    restart: always
     ports:
       - 8090:8080
