@@ -17,29 +17,29 @@ describe('Routes: posts', () => {
     return knex.migrate.rollback();
   });
 
-  describe('GET /posts', () => {
+  describe('GET /api/v1/posts', () => {
     test('Should return array of posts', async () => {
-      const res = await chai.request(server).get('/posts');
+      const res = await chai.request(server).get('/api/v1/posts');
       expect(res.status).toEqual(200);
       expect(res.body.data).toBeDefined();
     });
   });
 
 
-  describe('GET /posts/:id', () => {
+  describe('GET /api/v1/posts/:id', () => {
     test('Should return single post', async () => {
-      const posts = await chai.request(server).get('/posts');
+      const posts = await chai.request(server).get('/api/v1/posts');
       const [ first ] = posts.body.data;
-      const res = await chai.request(server).get(`/posts/${first.id}`);
+      const res = await chai.request(server).get(`/api/v1/posts/${first.id}`);
       expect(res.status).toEqual(200);
       expect(res.body.data.title).toBeDefined();
     });
   });
 
-  describe('POST /posts', () => {
+  describe('POST /api/v1/posts', () => {
     test('Should return single post after insert', async () => {
       const res = await chai.request(server)
-        .post('/posts')
+        .post('/api/v1/posts')
         .send({ title: 'Test title', content: 'Test text' });
 
       expect(res.status).toEqual(200);
@@ -48,7 +48,7 @@ describe('Routes: posts', () => {
 
     test('Should return error status, message, when body invalid', async () => {
       const res = await chai.request(server)
-        .post('/posts')
+        .post('/api/v1/posts')
         .send({ title: '' });
 
       expect(res.status).toEqual(400);
@@ -56,12 +56,12 @@ describe('Routes: posts', () => {
     });
   });
 
-  describe('PATCH /posts', () => {
+  describe('PATCH /api/v1/posts', () => {
     test('Should return patched entity', async () => {
-      const posts = await chai.request(server).get('/posts');
+      const posts = await chai.request(server).get('/api/v1/posts');
       const [ first ] = posts.body.data;
       const res = await chai.request(server)
-        .patch(`/posts/${first.id}`)
+        .patch(`/api/v1/posts/${first.id}`)
         .send({ status: true });
 
       expect(res.status).toEqual(200);
@@ -70,13 +70,13 @@ describe('Routes: posts', () => {
   });
 
 
-  describe('DELETE /posts', () => {
+  describe('DELETE /api/v1/posts', () => {
     test('Should return patched entity', async () => {
-      const posts = await chai.request(server).get('/posts');
+      const posts = await chai.request(server).get('/api/v1/posts');
       const [ first ] = posts.body.data;
 
       const res = await chai.request(server)
-        .delete(`/posts/${first.id}`);
+        .delete(`/api/v1/posts/${first.id}`);
 
       expect(res.status).toEqual(200);
     });
