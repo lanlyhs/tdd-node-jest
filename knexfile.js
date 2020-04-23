@@ -1,27 +1,24 @@
-const path = require('path');
-
-const BASE_PATH = path.join(__dirname, 'src', 'db');
+require("dotenv").config();
 
 module.exports = {
   test: {
-    client: 'postgres',
-    connection: 'postgres://<PG_USERNAME>:<PG_PASSWORD>@localhost:5432/blog_test',
+    client: "postgres",
+    connection: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5432/${process.env.POSTGRES_DB}`,
     migrations: {
-      directory: path.join(BASE_PATH, 'migrations')
+      directory: "./src/db/migrations",
     },
     seeds: {
-      directory: path.join(BASE_PATH, 'seeds')
-    }
+      directory: "./src/db/seeds",
+    },
   },
-
   development: {
-    client: 'postgres',
-    connection: 'postgres://<PG_USERNAME>:<PG_PASSWORD>@localhost:5432/blog',
+    client: "postgres",
+    connection: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5432/${process.env.POSTGRES_DB}`,
     migrations: {
-      directory: path.join(BASE_PATH, 'migrations')
+      directory: "./src/db/migrations",
     },
     seeds: {
-      directory: path.join(BASE_PATH, 'seeds')
-    }
-  }
+      directory: "./src/db/seeds",
+    },
+  },
 };

@@ -137,3 +137,5 @@ tmp/
 temp/
 
 # End of https://www.gitignore.io/api/macos,node
+
+docker-data/
