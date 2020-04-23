@@ -1,5 +1,5 @@
 const objection = require('objection');
-const uuid = require('uuid/v4');
+const { v4: uuid } = require('uuid');
 const knex = require('../db/config');
 const _ = require('lodash');
 
